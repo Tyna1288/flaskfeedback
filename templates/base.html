@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Feedback &ndash; {% block title %}{% endblock %} </title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/feedback.css">
+    
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-light bg-primary justify-content-between ">
+            <div class="container">
+                <a href="/" class="navbar-brand text-light">FLASK FEEDBACK</a>
+                <ul class="nav navbar-nav flex-row float-right">
+                    <li class="nav-item">
+                        {% if 'username' in session %}
+                        <a class="nav-link pr-3 text-light" href="/logout">LOGOUT</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link pr-3 text-light" href="/login">LOGOUT</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container" mt-5">
+            {% for msg in get_flashed_messages() %}
+            <div class="alert alert-{{category}}">{{ msg }}</div>
+            {% endfor %}
+    
+            {% block content %}
+            {% endblock %}
+        </div>
+
+</body>
+</html>
